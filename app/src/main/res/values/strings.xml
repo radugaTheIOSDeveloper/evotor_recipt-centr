@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CentrRecipt</string>
+
+
+    <string name="inn">ИНН владельца кассы</string>
+    <string name="kkt">Регистрационный номер ККТ</string>
+    <string name="fisc">Номер фискального накопителя</string>
+
+    <string name="save">СОХРАНИТЬ</string>
+
+
+</resources>
