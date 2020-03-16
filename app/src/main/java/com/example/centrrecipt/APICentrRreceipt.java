@@ -114,6 +114,7 @@ public class APICentrRreceipt {
             ItemCentrRecipt item = new ItemCentrRecipt();
             item.setName(nameObject.getString("name"));
             item.setCoast((float) nameObject.getDouble("coast"));
+            item.setNds(nameObject.getInt("nds"));
             item.setType(nameObject.getInt("pay_type"));
             item.setQr_code(nameObject.getString("qr_code"));
             items.add(item);

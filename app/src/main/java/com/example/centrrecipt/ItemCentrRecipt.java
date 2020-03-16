@@ -5,7 +5,17 @@ public class ItemCentrRecipt {
     Integer type;
     String name;
     String qr_code;
+
+    public Integer getNds() {
+        return nds;
+    }
+
+    public void setNds(Integer nds) {
+        this.nds = nds;
+    }
+
     Float coast;
+    Integer nds;
 
     public Integer getType() {
         return type;

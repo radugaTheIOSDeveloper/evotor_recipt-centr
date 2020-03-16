@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
     Integer index;
 
+    Integer sizeRepiton;
+
 
 
     @Override
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         sizeRecipt.setText("Чеков в очереди: " +  reciptInt);
 
-
+        sizeRepiton = 0;
         openReciptButton = findViewById(R.id.openReciptButton);
 
 
@@ -94,7 +96,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new ItemTaskCentrRecipt().execute();
+
+                Log.d("logh" , editTextINN.getText().toString()+"\n"+editTextKKT.getText().toString()+"\n"+editTextFiscal.getText().toString());
+                new ItemTaskUserKKT().execute();
+
+
+                //openReceipt(10.f,"hellow",0,0,"9002323");
 
             }
         });
@@ -130,6 +137,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+
+    public  class ItemTaskUserKKT extends AsyncTask<Void, Void, List<ItemKKT>> {
+
+
+        @Override
+        protected List<ItemKKT> doInBackground(Void... voids) {
+
+            return new APIUserKKT().itemKKTS(editTextINN.getText().toString(),editTextKKT.getText().toString(),editTextFiscal.getText().toString());
+
+        }
+
+        @SuppressLint("LongLogTag")
+        @Override
+        protected void onPostExecute(List<ItemKKT> itemKKTS) {
+            super.onPostExecute(itemKKTS);
+
+
+
+
+
+        }
+    }
+
+
+
+
+
     //метод
 
     public  class ItemTaskCentrRecipt extends AsyncTask<Void, Void, List<ItemCentrRecipt>> {
@@ -153,7 +189,11 @@ public class MainActivity extends AppCompatActivity {
             int sizeArray = itemCentrRecipts.size();
             cikke = true;
             statusCheck= true;
-            sizeRecipt.setText("Чеков в очереди: " +  sizeArray);
+
+            sizeRepiton = sizeArray;
+
+           // sizeRecipt.setText("Чеков в очереди: " +  sizeRepiton);
+
 
             if (sizeArray <= 0){
 
@@ -175,14 +215,16 @@ public class MainActivity extends AppCompatActivity {
 //
                                 openReceipt(itemCentrRecipts.get(index).getCoast(),
                                              itemCentrRecipts.get(index).getName(),
-                                            0,
+                                            itemCentrRecipts.get(index).getNds(),
                                             itemCentrRecipts.get(index).getType(),
                                             itemCentrRecipts.get(index).getQr_code());
 
                                 statusCheck = false;
                                 index++;
 
-                                sizeRecipt.setText("Чеков в очереди: " +  sizeArray);
+                                sizeRepiton--;
+
+
 
 
                                 if (index == sizeArray){
@@ -338,10 +380,12 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (result.getType()) {
                         case OK:
+                            statusCheck = true;
 
                             break;
                         case ERROR:
 
+                            statusCheck = true;
 
                             switch (result.getError().getCode()) {
 

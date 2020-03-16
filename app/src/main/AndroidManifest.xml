@@ -30,12 +30,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.EVOTOR" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.EVOTOR" />-->
             </intent-filter>
         </activity>
 
